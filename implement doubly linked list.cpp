@@ -100,7 +100,22 @@ void NodeInsertatPos(Node *&head, int val, int pos){
   new_node->prev = temp;
 
 
-}    
+}
+
+void  NodeDeleteAtPos(Node * &head, int pos){
+   Node *temp = head;
+  Node *temp_1 = head->next;
+  for(int i =1; i<pos-1;i++){
+     temp  = temp->next;
+     temp_1 = temp_1->next;
+  }
+  Node *removal = temp_1;
+
+  temp->next = temp_1->next;
+  temp_1->next->prev = temp;
+
+  delete removal;
+}
 
 
 
@@ -118,6 +133,13 @@ int main()
 NodeInsertatstart(head, 100000);
 
 NodeInsertatPos(head, 200000,4);
+printing(head);
+printing_backward_to_check(head);
+
+
+cout <<"Start deleting";
+NodeDeleteAtPos(head, 4);
+
 printing(head);
 printing_backward_to_check(head);
     return 0;
