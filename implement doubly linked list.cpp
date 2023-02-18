@@ -74,6 +74,36 @@ void printing_backward_to_check (Node *head){
         i--;
     }
 }
+
+void NodeInsertatstart(Node *&head, int val){
+  
+  Node *new_node = new Node(val);
+  new_node->next = head;
+  head->prev = new_node;
+  head = new_node;
+
+}
+
+void NodeInsertatPos(Node *&head, int val, int pos){
+  
+  Node *temp = head;
+  Node *temp_1 = head->next;
+  Node *new_node = new Node(val);
+  for(int i =1; i<pos-1;i++){
+     temp  = temp->next;
+     temp_1 = temp_1->next;
+  }
+
+  new_node->next = temp_1;
+  temp_1->prev = new_node;
+  temp->next = new_node;
+  new_node->prev = temp;
+
+
+}    
+
+
+
 int main()
 {
     Node *head  =NULL;
@@ -85,6 +115,9 @@ int main()
     nodecreation(head, i * 10);
 }
 
+NodeInsertatstart(head, 100000);
+
+NodeInsertatPos(head, 200000,4);
 printing(head);
 printing_backward_to_check(head);
     return 0;
